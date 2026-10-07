@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fashion Insights Survey</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef8fc;
+            color: #17212b;
+            line-height: 1.6;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: #0b2d4d;
+            color: white;
+            padding: 18px 8%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #87ceeb;
+        }
+
+        .header-text {
+            font-size: 14px;
+            color: #d8f3fc;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .page {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+
+        /* ================= INTRO ================= */
+
+        .intro {
+            background: white;
+            padding: 45px;
+            border-radius: 18px;
+
+            border-top: 8px solid #0b2d4d;
+
+            box-shadow:
+                0 8px 30px rgba(11,45,77,0.10);
+
+            margin-bottom: 25px;
+        }
+
+        .intro h1 {
+            font-size: 38px;
+            color: #0b2d4d;
+            margin-bottom: 15px;
+        }
+
+        .intro h1 span {
+            color: #35a9d6;
+        }
+
+        .intro p {
+            color: #5c6c76;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .required-info {
+            margin-top: 20px;
+            color: #0b2d4d;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+
+        /* ================= FORM CARD ================= */
+
+        .form-card {
+            background: white;
+
+            padding: 35px 45px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 30px rgba(11,45,77,0.08);
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ================= QUESTION ================= */
+
+        .question {
+            padding: 25px 0;
+
+            border-bottom: 1px solid #e1edf2;
+        }
+
+        .question:last-child {
+            border-bottom: none;
+        }
+
+        .question-title {
+            font-size: 19px;
+            font-weight: bold;
+            color: #0b2d4d;
+
+            margin-bottom: 6px;
+        }
+
+        .question-number {
+            color: #35a9d6;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .required {
+            color: #d62828;
+        }
+
+        .description {
+            color: #75838c;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+
+        /* ================= TEXT INPUT ================= */
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+
+            width: 100%;
+
+            padding: 14px 15px;
+
+            border: 1.5px solid #cbdde5;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-family: inherit;
+
+            outline: none;
+
+            transition: 0.2s;
+
+            background: white;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #35a9d6;
+
+            box-shadow:
+                0 0 0 3px rgba(53,169,214,0.12);
+        }
+
+
+        /* ================= RADIO & CHECKBOX ================= */
+
+        .option {
+            display: flex;
+            align-items: center;
+
+            padding: 10px 12px;
+
+            margin-bottom: 6px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background: #eef9fc;
+        }
+
+        .option input {
+            width: 18px;
+            height: 18px;
+
+            margin-right: 12px;
+
+            accent-color: #0b2d4d;
+
+            cursor: pointer;
+        }
+
+        .option label {
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+
+        /* ================= COLOR ================= */
+
+        .color-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+
+            margin-top: 10px;
+        }
+
+        .color-option {
+
+            border: 1.5px solid #d6e5eb;
+
+            border-radius: 10px;
+
+            padding: 12px 5px;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .color-option:hover {
+            background: #f0fafc;
+            border-color: #87ceeb;
+        }
+
+        .color-option input {
+            display: none;
+        }
+
+        .color-option.selected {
+            border: 2px solid #0b2d4d;
+            background: #e9f8fc;
+        }
+
+        .color-circle {
+
+            width: 35px;
+            height: 35px;
+
+            border-radius: 50%;
+
+            margin: auto auto 7px;
+
+            border: 1px solid #aaa;
+        }
+
+        .color-name {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+
+        /* ================= SUBMIT ================= */
+
+        .submit-area {
+
+            background: white;
+
+            padding: 30px 45px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 30px rgba(11,45,77,0.08);
+
+            margin-bottom: 25px;
+
+            text-align: right;
+        }
+
+        .submit-button {
+
+            background: #0b2d4d;
+
+            color: white;
+
+            border: none;
+
+            padding: 15px 35px;
+
+            border-radius: 9px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .submit-button:hover {
+
+            background: #164b72;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* ================= ERROR ================= */
+
+        .error {
+
+            color: #d62828;
+
+            font-size: 13px;
+
+            margin-top: 7px;
+
+            display: none;
+        }
+
+
+        /* ================= SUCCESS ================= */
+
+        #success {
+
+            display: none;
+
+            background: white;
+
+            text-align: center;
+
+            padding: 60px 40px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 30px rgba(11,45,77,0.10);
+        }
+
+        .success-icon {
+
+            width: 75px;
+            height: 75px;
+
+            background: #dff6fc;
+
+            color: #0b2d4d;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin: 0 auto 20px;
+
+            font-size: 38px;
+
+            font-weight: bold;
+        }
+
+        #success h2 {
+
+            color: #0b2d4d;
+
+            font-size: 34px;
+
+            margin-bottom: 15px;
+        }
+
+        #success p {
+
+            color: #64757f;
+
+            max-width: 600px;
+
+            margin: 0 auto 10px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            background: #0b2d4d;
+
+            color: #ccebf5;
+
+            text-align: center;
+
+            padding: 25px 15px;
+
+            font-size: 13px;
+
+            margin-top: 40px;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 15px 5%;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .header-text {
+                font-size: 11px;
+            }
+
+            .page {
+                margin: 20px auto;
+            }
+
+            .intro {
+                padding: 30px 22px;
+            }
+
+            .intro h1 {
+                font-size: 30px;
+            }
+
+            .form-card {
+                padding: 20px 22px;
+            }
+
+            .question-title {
+                font-size: 17px;
+            }
+
+            .color-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .submit-area {
+                padding: 25px 22px;
+                text-align: center;
+            }
+
+            .submit-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        FASHION <span>INSIGHTS</span>
+    </div>
+
+    <div class="header-text">
+        Customer Research Survey
+    </div>
+
+</header>
+
+
+
+<div class="page">
+
+
+    <!-- ================= INTRO ================= -->
+
+    <section class="intro">
+
+        <h1>
+            Help Us Shape the
+            <span>Future of Fashion</span>
+        </h1>
+
+        <p>
+            We are building a new clothing brand focused on
+            understanding what people truly want from their clothes.
+            Your preferences, ideas, and experiences will help us
+            create fashion that is more comfortable, practical,
+            stylish, and meaningful.
+        </p>
+
+        <p>
+            This survey contains 10 questions. Your honest answers
+            will help us understand your needs and design products
+            around real people.
+        </p>
+
+        <div class="required-info">
+            * Required question
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= FORM ================= -->
+
+    <form id="surveyForm">
+
+
+        <div class="form-card">
+
+
+            <!-- QUESTION 1 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    QUESTION 1
+                </div>
+
+                <div class="question-title">
+                    Who is your favorite fashion designer?
+                    <span class="required">*</span>
+                </div>
+
+                <input
+                    type="text"
+                    id="designer"
+                    placeholder="Your answer"
+                    required>
+
+            </div>
+
+
+
+            <!-- QUESTION 2 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    QUESTION 2
+                </div>
+
+                <div class="question-title">
+                    What is your age?
+                    <span class="required">*</span>
+                </div>
+
+                <input
+                    type="number"
+                    id="age"
+                    min="10"
+                    max="100"
+                    placeholder="Your age"
+                    required>
+
+                <div class="error" id="ageError">
+                    Please enter an age between 10 and 100.
+                </div>
+
+            </div>
+
+
+
+            <!-- QUESTION 3 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    QUESTION 3
+                </div>
+
+                <div class="question-title">
+                    What does your dream outfit look like?
+                    <span class="required">*</span>
+                </div>
+
+                <div class="description">
+                    Tell us about the style, color, design,
+                    occasion, or anything else.
+                </div>
+
+                <textarea
+                    id="dream"
+                    placeholder="Your answer..."
+                    required></textarea>
+
+            </div>
+
+
+
+            <!-- QUESTION 4 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    QUESTION 4
+                </div>
+
+                <div class="question-title">
+                    Who or what inspires your fashion choices?
+                    <span class="required">*</span>
+                </div>
+
+                <div class="description">
+                    For example: celebrities, designers,
+                    social media, culture, movies, friends, etc.
+                </div>
+
+                <textarea
+                    id="inspiration"
+                    placeholder="Your answer..."
+                    required></textarea>
+
+            </div>
+
+
+
+            <!-- QUESTION 5 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    QUESTION 5
+                </div>
+
+                <div class="question-title">
+                    What is the biggest problem you want your
+                    clothes to solve?
+                    <span class="required">*</span>
+                </div>
+
+                <div class="description">
+                    For example: comfort, affordability,
+                    fitting, quality, style, durability, etc.
+                </div>
+
+                <textarea
+                    id="problem"
+                    placeholder="Your answer..."
+                    required></textarea>
+
+            </div>
+
+
+
+            <!-- QUESTION 6 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    QUESTION 6
+                </div>
+
+                <div class="question-title">
+                    What is your preferred price range for an outfit?
+                    <span class="required">*</span>
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="price"
+                        id="price1"
+                        value="Under ₹1,000"
+                        required>
+
+                    <label for="price1">
+                        Under ₹1,000
+                    </label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="price"
+                        id="price2"
+                        value="₹1,000 – ₹2,500">
+
+                    <label for="price2">
+                        ₹1,000 – ₹2,500
+                    </label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="price"
+                        id="price3"
+                        value="₹2,500 – ₹5,000">
+
+                    <label for="price3">
+                        ₹2,500 – ₹5,000
+                    </label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="price"
+                        id="price4"
+                        value="₹5,000 – ₹10,000">
+
+                    <label for="price4">
+                        ₹5,000 – ₹10,000
+                    </label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="price"
+                        id="price5"
+                        value="Above ₹10,000">
+
+                    <label for="price5">
+                        Above ₹10,000
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- QUESTION 7 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    QUESTION 7
+                </div>
+
+                <div class="question-title">
+                    What type of clothing do you feel most
+                    comfortable wearing?
+                    <span class="required">*</span>
+                </div>
+
+                <div class="description">
+                    Select all that apply.
+                </div>
+
+
+                <div class="option">
+                    <input type="checkbox" name="clothing" value="T-Shirts">
+                    <label>T-Shirts</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="clothing" value="Shirts">
+                    <label>Shirts</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="clothing" value="Jeans">
+                    <label>Jeans</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="clothing" value="Trousers">
+                    <label>Trousers</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="clothing" value="Dresses">
+                    <label>Dresses</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="clothing" value="Kurtis">
+                    <label>Kurtis</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="clothing" value="Sarees">
+                    <label>Sarees</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="clothing" value="Hoodies">
+                    <label>Hoodies</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="clothing" value="Casual Wear">
+                    <label>Casual Wear</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="clothing" value="Traditional Wear">
+                    <label>Traditional Wear</label>
+                </div>
+
+            </div>
+
+
+
+            <!-- QUESTION 8 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    QUESTION 8
+                </div>
+
+                <div class="question-title">
+                    Which fabric do you find most comfortable?
+                    <span class="required">*</span>
+                </div>
+
+                <div class="description">
+                    Select all that apply.
+                </div>
+
+
+                <div class="option">
+                    <input type="checkbox" name="fabric" value="Cotton">
+                    <label>Cotton</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="fabric" value="Linen">
+                    <label>Linen</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="fabric" value="Denim">
+                    <label>Denim</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="fabric" value="Silk">
+                    <label>Silk</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="fabric" value="Rayon">
+                    <label>Rayon</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="fabric" value="Wool">
+                    <label>Wool</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="fabric" value="Polyester">
+                    <label>Polyester</label>
+                </div>
+
+                <div class="option">
+                    <input type="checkbox" name="fabric" value="Khadi">
+                    <label>Khadi</label>
+                </div>
+
+            </div>
+
+
+
+            <!-- QUESTION 9 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    QUESTION 9
+                </div>
+
+                <div class="question-title">
+                    What is your gender?
+                    <span class="required">*</span>
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Male"
+                        required>
+
+                    <label>Male</label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Female">
+
+                    <label>Female</label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Other">
+
+                    <label>Other</label>
+
+                </div>
+
+
+                <div class="option">
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Prefer not to say">
+
+                    <label>Prefer not to say</label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- QUESTION 10 -->
+
+            <div class="question">
+
+                <div class="question-number">
+                    QUESTION 10
+                </div>
+
+                <div class="question-title">
+                    What is your favorite color?
+                    <span class="required">*</span>
+                </div>
+
+
+                <div class="color-grid">
+
+
+                    <label class="color-option">
+
+                        <input
+                            type="radio"
+                            name="color"
+                            value="Black"
+                            required>
+
+                        <div
+                            class="color-circle"
+                            style="background:#000000;">
+                        </div>
+
+                        <div class="color-name">
+                            Black
+                        </div>
+
+                    </label>
+
+
+                    <label class="color-option">
+
+                        <input
+                            type="radio"
+                            name="color"
+                            value="White">
+
+                        <div
+                            class="color-circle"
+                            style="background:#ffffff;">
+                        </div>
+
+                        <div class="color-name">
+                            White
+                        </div>
+
+                    </label>
+
+
+                    <label class="color-option">
+
+                        <input
+                            type="radio"
+                            name="color"
+                            value="Blue">
+
+                        <div
+                            class="color-circle"
+                            style="background:#246BCE;">
+                        </div>
+
+                        <div class="color-name">
+                            Blue
+                        </div>
+
+                    </label>
+
+
+                    <label class="color-option">
+
+                        <input
+                            type="radio"
+                            name="color"
+                            value="Sky Blue">
+
+                        <div
+                            class="color-circle"
+                            style="background:#87CEEB;">
+                        </div>
+
+                        <div class="color-name">
+                            Sky Blue
+                        </div>
+
+                    </label>
+
+
+                    <label class="color-option">
+
+                        <input
+                            type="radio"
+                            name="color"
+                            value="Red">
+
+                        <div
+                            class="color-circle"
+                            style="background:#E53935;">
+                        </div>
+
+                        <div class="color-name">
+                            Red
+                        </div>
+
+                    </label>
+
+
+                    <label class="color-option">
+
+                        <input
+                            type="radio"
+                            name="color"
+                            value="Green">
+
+                        <div
+                            class="color-circle"
+                            style="background:#43A047;">
+                        </div>
+
+                        <div class="color-name">
+                            Green
+                        </div>
+
+                    </label>
+
+
+                    <label class="color-option">
+
+                        <input
+                            type="radio"
+                            name="color"
+                            value="Yellow">
+
+                        <div
+                            class="color-circle"
+                            style="background:#FDD835;">
+                        </div>
+
+                        <div class="color-name">
+                            Yellow
+                        </div>
+
+                    </label>
+
+
+                    <label class="color-option">
+
+                        <input
+                            type="radio"
+                            name="color"
+                            value="Pink">
+
+                        <div
+                            class="color-circle"
+                            style="background:#EC407A;">
+                        </div>
+
+                        <div class="color-name">
+                            Pink
+                        </div>
+
+                    </label>
+
+
+                    <label class="color-option">
+
+                        <input
+                            type="radio"
+                            name="color"
+                            value="Purple">
+
+                        <div
+                            class="color-circle"
+                            style="background:#8E44AD;">
+                        </div>
+
+                        <div class="color-name">
+                            Purple
+                        </div>
+
+                    </label>
+
+
+                    <label class="color-option">
+
+                        <input
+                            type="radio"
+                            name="color"
+                            value="Brown">
+
+                        <div
+                            class="color-circle"
+                            style="background:#795548;">
+                        </div>
+
+                        <div class="color-name">
+                            Brown
+                        </div>
+
+                    </label>
+
+
+                    <label class="color-option">
+
+                        <input
+                            type="radio"
+                            name="color"
+                            value="Grey">
+
+                        <div
+                            class="color-circle"
+                            style="background:#78909C;">
+                        </div>
+
+                        <div class="color-name">
+                            Grey
+                        </div>
+
+                    </label>
+
+
+                    <label class="color-option">
+
+                        <input
+                            type="radio"
+                            name="color"
+                            value="Orange">
+
+                        <div
+                            class="color-circle"
+                            style="background:#FB8C00;">
+                        </div>
+
+                        <div class="color-name">
+                            Orange
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= SUBMIT ================= -->
+
+        <div class="submit-area">
+
+            <button
+                type="submit"
+                class="submit-button">
+
+                Submit Survey ✓
+
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+
+    <!-- ================= SUCCESS ================= -->
+
+    <section id="success">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Thank You! 💙
+        </h2>
+
+        <p>
+            Thank you for taking the time to share your thoughts
+            with us.
+        </p>
+
+        <p>
+            Your feedback will help us understand what people
+            really want from modern fashion.
+        </p>
+
+        <p>
+            <strong>
+                Together, we can shape the future of fashion.
+            </strong>
+        </p>
+
+    </section>
+
+
+</div>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    © 2026 Fashion Insights. All rights reserved.
+
+    <br>
+
+    Thank you for helping us understand the future of fashion.
+
+</footer>
+
+
+
+<script>
+
+    /* ==================================
+       FORM
+    ================================== */
+
+    const form =
+        document.getElementById("surveyForm");
+
+    const success =
+        document.getElementById("success");
+
+
+    /* ==================================
+       COLOR SELECTION
+    ================================== */
+
+    const colorOptions =
+        document.querySelectorAll(".color-option");
+
+
+    colorOptions.forEach(function(option) {
+
+        option.addEventListener("click", function() {
+
+            colorOptions.forEach(function(item) {
+
+                item.classList.remove("selected");
+
+            });
+
+            option.classList.add("selected");
+
+        });
+
+    });
+
+
+    /* ==================================
+       FORM SUBMISSION
+    ================================== */
+
+    form.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        /* AGE VALIDATION */
+
+        const age =
+            Number(document.getElementById("age").value);
+
+        const ageError =
+            document.getElementById("ageError");
+
+
+        if (age < 10 || age > 100) {
+
+            ageError.style.display = "block";
+
+            document
+                .getElementById("age")
+                .focus();
+
+            return;
+
+        } else {
+
+            ageError.style.display = "none";
+
+        }
+
+
+        /* CHECK QUESTION 7 */
+
+        const clothing =
+            document.querySelectorAll(
+                'input[name="clothing"]:checked'
+            );
+
+
+        if (clothing.length === 0) {
+
+            alert(
+                "Please select at least one type of comfortable clothing."
+            );
+
+            return;
+
+        }
+
+
+        /* CHECK QUESTION 8 */
+
+        const fabric =
+            document.querySelectorAll(
+                'input[name="fabric"]:checked'
+            );
+
+
+        if (fabric.length === 0) {
+
+            alert(
+                "Please select at least one comfortable fabric."
+            );
+
+            return;
+
+        }
+
+
+        /* GET ALL ANSWERS */
+
+        const data = {
+
+            favoriteDesigner:
+                document.getElementById("designer").value,
+
+            age:
+                document.getElementById("age").value,
+
+            dreamOutfit:
+                document.getElementById("dream").value,
+
+            inspiration:
+                document.getElementById("inspiration").value,
+
+            problem:
+                document.getElementById("problem").value,
+
+            price:
+                document.querySelector(
+                    'input[name="price"]:checked'
+                ).value,
+
+            comfortableClothing:
+                Array.from(clothing)
+                    .map(item => item.value),
+
+            comfortableFabric:
+                Array.from(fabric)
+                    .map(item => item.value),
+
+            gender:
+                document.querySelector(
+                    'input[name="gender"]:checked'
+                ).value,
+
+            favoriteColor:
+                document.querySelector(
+                    'input[name="color"]:checked'
+                ).value
+
+        };
+
+
+        /* SHOW ANSWERS IN CONSOLE */
+
+        console.log(
+            "Fashion Survey Response:"
+        );
+
+        console.log(data);
+
+
+        /* HIDE FORM */
+
+        form.style.display = "none";
+
+
+        /* SHOW THANK YOU */
+
+        success.style.display = "block";
+
+
+        /* GO TO THANK YOU */
+
+        success.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
